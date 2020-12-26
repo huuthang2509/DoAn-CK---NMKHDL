@@ -2,5 +2,7 @@
 ## Giảng viên: Trần Trung Kiên
 
 ### Thông tin nhóm
+- STT: 46
+**Thành Viên:**
 - Đặng Hữu Thắng,   MSSV: 18120555
 - Nguyễn Hữu Huân,  MSSV:
