@@ -5,4 +5,4 @@
 - STT: 46
 **Thành Viên:**
 - Đặng Hữu Thắng,   MSSV: 18120555
-- Nguyễn Hữu Huân,  MSSV:
+- Nguyễn Hữu Huân,  MSSV: 1712466
