@@ -16,6 +16,7 @@ Root
 │   └── *.* // tập dữ liệu
 ├── notebooks/
 │   └── *.ipynb // notebooks bài làm đồ án, cào dữ liệu
+│   └── *.md  // file markdown của các notebook (tự tạo bởi jupytex)
 ├── docs/
 │   ├── md-scripts/
 │   │   ├── *.md  // file markdown cho slides, plan 
