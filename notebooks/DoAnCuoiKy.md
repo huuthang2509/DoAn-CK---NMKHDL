@@ -38,7 +38,6 @@ import seaborn as sns
 import pandas as pd
 import numpy as np
 
-# for preprocessing
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.impute import SimpleImputer
@@ -46,7 +45,6 @@ from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import Pipeline, make_pipeline
 from sklearn.compose import ColumnTransformer, make_column_transformer
 
-# for model picking
 from sklearn.neural_network import MLPRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.svm import SVR
@@ -56,9 +54,11 @@ from sklearn.model_selection import GridSearchCV
 from sklearn import set_config
 set_config(display='diagram') # Để trực quan hóa pipeline
 
+# Để show hết dòng, cột khi hiển thị
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
 
+# Để ẩn đi warnings :(
 import warnings
 warnings.filterwarnings('ignore')
 ```
@@ -379,7 +379,6 @@ class ColAdderDropper(BaseEstimator, TransformerMixin):
                         df[col1][i] = 3
                     else:
                         df[col1][i] = 1
-
             df.drop([col2, col3, col4, col5, col6, col7], axis=1, inplace=True)
             df = df.rename(columns={col1 : 'phong_tam'})
             
@@ -595,17 +594,17 @@ class ColAdderDropper(BaseEstimator, TransformerMixin):
 ```python
 nume_cols = ['Diện tích']
 unorder_cate_cols = ['City']
-order_cate_cols = ['Đồ vệ sinh cá nhân miễn phí', 'Vòi sen',
+order_cate_cols = ['Đồ vệ sinh cá nhân miễn phí',
        'tien_ich_phong', 'ket_sat', 'toilet', 'Bàn làm việc',
        'Khu vực tiếp khách', 'TV', 'Dép', 'Tủ lạnh', 'Điện thoại',
        'Máy sấy tóc', 'lot_san', 'Ấm đun nước điện', 'Truyền hình cáp',
-       'tu_quan_ao', 'view', 'Bồn tắm', 'Phòng tắm riêng',
+       'tu_quan_ao', 'view',
        'Hệ thống cách âm', 'Minibar', 'WiFi miễn phí', 'Ghế sofa', 'bep_an',
-       'Máy giặt', 'Bồn tắm hoặc Vòi sen', 'Đồng hồ báo thức', 'ban_an',
-       'Bồn tắm spa', 'Ổ điện gần giường', 'Giấy vệ sinh',
-       'Phòng tắm riêng trong phòng', 'ui_quan_ao', 'giuong',
+       'Máy giặt', 'Đồng hồ báo thức', 'ban_an',
+       'Ổ điện gần giường', 'Giấy vệ sinh',
+        'ui_quan_ao', 'giuong',
        'Truyền hình vệ tinh', 'Ban công', 'Quyền sử dụng Executive Lounge',
-       'Ra trải giường', 'may_pha_tra_cf', 'Máy sấy quần áo', 'Phòng tắm phụ',
+       'Ra trải giường', 'may_pha_tra_cf', 'Máy sấy quần áo',
        'Có phòng thông nhau qua cửa nối', 'Chậu rửa vệ sinh (bidet)',
        'Các tầng trên đi lên bằng thang máy',
        'Xe lăn có thể đi đến mọi nơi trong toàn bộ khuôn viên', 'Máy vi tính',
