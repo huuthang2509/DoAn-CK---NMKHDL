@@ -9,9 +9,13 @@
 - Đặng Hữu Thắng,   MSSV: 18120555
 - Nguyễn Hữu Huân,  MSSV: 1712466
 
+**Đề tài:** Dự đoán giá thuê khách sạn, nhà nghỉ, homestay của 4 thành phố lớn: Hà Nội, TP.Hồ Chí Minh, Đà Nẵng và Đà Lạt
+
 ## Cấu trúc thư mục :
 ```
 Root
+│
+├── crawl_data_&_preprocess
 ├── datasets/
 │   └── *.* // tập dữ liệu
 ├── notebooks/
