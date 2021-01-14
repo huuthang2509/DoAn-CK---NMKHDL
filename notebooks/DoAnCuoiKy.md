@@ -687,7 +687,6 @@ val_errs = []
 alphas = [0.1, 1, 10, 100, 1000]
 best_val_err = float('inf'); best_alpha = None;
 for alpha in alphas:
-        # YOUR CODE HER
     full_pipeline.set_params(model__regressor__alpha=alpha)  # nested pipeline
     full_pipeline.fit(train_X_df, train_y_sr)
     full_pipeline.predict(val_X_df)
@@ -700,6 +699,10 @@ for alpha in alphas:
         best_val_err = val_err
         best_alpha = alpha
 'Finish!'
+```
+
+```python
+best_val_err
 ```
 
 ---
@@ -723,7 +726,7 @@ full_pipeline = Pipeline(steps = [
 # và chọn ra các giá trị tốt nhất
 train_errs = []
 val_errs = []
-my_n_estimators = [0.1, 1, 10, 100, 1000]
+my_n_estimators = [100, 200, 400, 600, 800]
 best_val_err = float('inf'); best_alpha = None;
 for my_n_estimator in my_n_estimators:
     full_pipeline.set_params(model__regressor__n_estimators=my_n_estimator)  # nested pipeline
