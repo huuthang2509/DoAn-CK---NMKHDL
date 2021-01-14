@@ -50,6 +50,9 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.svm import SVR
 from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.model_selection import GridSearchCV
+from sklearn.compose import TransformedTargetRegressor
+from sklearn.metrics import mean_squared_error, mean_absolute_error
+
 
 from sklearn import set_config
 set_config(display='diagram') # Để trực quan hóa pipeline
@@ -629,11 +632,15 @@ preprocess_pipeline = Pipeline(steps = [('col_adderdropper', ColAdderDropper()),
 ```
 
 ```python
+preprocess_pipeline
+```
+
+```python
 preprocessed_train_X = preprocess_pipeline.fit_transform(train_X_df)
 ```
 
 ```python
-preprocess_pipeline
+preprocessed_train_X.shape
 ```
 
 ---
@@ -653,5 +660,102 @@ preprocessed_val_X = preprocess_pipeline.transform(val_X_df)
 
 ### Tìm mô hình tốt nhất
 
+```python
+# Neural Net regressor
+mlp_regressor = MLPRegressor(hidden_layer_sizes=(100, 300, 300, 100), solver='adam', learning_rate='adaptive',
+                            random_state=0, max_iter=400, early_stopping=True, verbose=0)
+
+model = TransformedTargetRegressor(regressor=mlp_regressor,
+                                 func=np.log, inverse_func=np.exp)
+
+# Full pipeline = preprocess_pipeline + model
+full_pipeline = Pipeline(steps = [
+    ('preprocessor', preprocess_pipeline),
+    ('model', model)
+])
+```
+
+```python
+full_pipeline
+```
+
+```python
+# Thử nghiệm với các giá trị khác nhau của các siêu tham số
+# và chọn ra các giá trị tốt nhất
+train_errs = []
+val_errs = []
+alphas = [0.1, 1, 10, 100, 1000]
+best_val_err = float('inf'); best_alpha = None;
+for alpha in alphas:
+        # YOUR CODE HER
+    full_pipeline.set_params(model__regressor__alpha=alpha)  # nested pipeline
+    full_pipeline.fit(train_X_df, train_y_sr)
+    full_pipeline.predict(val_X_df)
+    train_score = full_pipeline.score(train_X_df, train_y_sr)
+    val_score = full_pipeline.score(val_X_df, val_y_sr)
+    train_err, val_err = (1 - train_score) * 100, (1 - val_score) * 100
+    train_errs.append(train_err)
+    val_errs.append(val_err)
+    if best_val_err > val_err:
+        best_val_err = val_err
+        best_alpha = alpha
+'Finish!'
+```
+
+---
+
+```python
+# Random forest regressor
+rf_regressor = RandomForestRegressor(n_estimators=800, random_state=0, verbose=0)
+
+model = TransformedTargetRegressor(regressor=rf_regressor,
+                                 func=np.log, inverse_func=np.exp)
+
+# Full pipeline = preprocess_pipeline + model
+full_pipeline = Pipeline(steps = [
+    ('preprocessor', preprocess_pipeline),
+    ('model', model)
+])
+```
+
+```python
+# Thử nghiệm với các giá trị khác nhau của các siêu tham số
+# và chọn ra các giá trị tốt nhất
+train_errs = []
+val_errs = []
+my_n_estimators = [0.1, 1, 10, 100, 1000]
+best_val_err = float('inf'); best_alpha = None;
+for my_n_estimator in my_n_estimators:
+    full_pipeline.set_params(model__regressor__n_estimators=my_n_estimator)  # nested pipeline
+    full_pipeline.fit(train_X_df, train_y_sr)
+    full_pipeline.predict(val_X_df)
+    train_score = full_pipeline.score(train_X_df, train_y_sr)
+    val_score = full_pipeline.score(val_X_df, val_y_sr)
+    train_err, val_err = (1 - train_score) * 100, (1 - val_score) * 100
+    train_errs.append(train_err)
+    val_errs.append(val_err)
+    if best_val_err > val_err:
+        best_val_err = val_err
+        best_alpha = alpha
+'Finish!'
+```
+
+---
+
+```python
+# # pick model + best hyperparameters
+
+# # fit on total (train+validation)
+# full_pipeline.fit(X_df, y_sr)
+```
 
 ### Đánh giá mô hình tìm được
+
+```python
+# pred_test_y = full_pipeline.predict(test_X_df)
+# train_score = rgs.score(X_df, y_sr)
+# test_score = rgs.score(test_X_df, test_y_sr)
+# print(train_score, test_score)
+# print("MSE =", mean_squared_error(test_y_sr, pred_test_y))
+# print("MAE =", mean_absolute_error(test_y_sr, pred_test_y))
+```
