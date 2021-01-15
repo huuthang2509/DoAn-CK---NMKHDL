@@ -6,8 +6,8 @@
 - STT: 46
 
 **Thành Viên:**
-- Đặng Hữu Thắng,   MSSV: 18120555
-- Nguyễn Hữu Huân,  MSSV: 1712466
+- Đặng Hữu Thắng (@huuthang2509),   MSSV: 18120555
+- Nguyễn Hữu Huân (@nguyenhuands99),  MSSV: 1712466
 
 **Đề tài:** Dự đoán giá thuê khách sạn, nhà nghỉ, homestay của 4 thành phố lớn: Hà Nội, TP.Hồ Chí Minh, Đà Nẵng và Đà Lạt dựa trên các tiện nghi của phòng
 
@@ -20,11 +20,8 @@ Root
 │   └── *.* // tập dữ liệu
 ├── notebooks/
 │   └── *.ipynb // notebooks bài làm đồ án, cào dữ liệu
-│   └── *.md  // file markdown của các notebook (tự tạo bởi jupytex)
 ├── docs/
-│   ├── md-scripts/
-│   │   ├── *.md  // file markdown cho slides, plan 
-│   ├── presentation.pdf
-│   └── plan.pdf
+│   ├── Slide.pdf
+│   └── Teamwork.pdf
 └── README.md
 ```
