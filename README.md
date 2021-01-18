@@ -1,6 +1,6 @@
 # Đồ án cuối kì môn Nhập môn khoa học dữ liệu - HCMUS
 ## Giảng viên: Thầy Trần Trung Kiên
-## Trợ giảng: Thầy Hồ Xuân Trường
+## Trợ giảng: Thầy Hoàng Xuân Trường
 
 ## Thông tin nhóm
 - STT: 46
